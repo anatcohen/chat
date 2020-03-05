@@ -1,25 +1,17 @@
 import React from 'react';
 import './App.css';
-import { Route } from 'react-router-dom';
-import { connect } from 'react-redux';
-import * as actions from './redux/actions';
+import { Route, Switch } from 'react-router-dom';
+import LogIn from './LogIn';
+import ChatRoom from './ChatRoom';
 
-export function App(props) {
-  // <Route exact path="/SignIn" render={(routeProps) => <SignIn {...routeProps} {...props} />} />
+export default function App(props) {
 
   return (
     <>
+      <Switch>
+        <Route path="/" exact component={LogIn} />
+        <Route path="/ChatRoom" component={ChatRoom} />
+      </Switch>
     </>
   );
 }
-
-function mapStateToProps(state) {
-  return;
-}
-
-function mapDispatchToProps(dispatch) {
-  return;
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
-
