@@ -4,6 +4,8 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from "react-router-dom";
 import * as firebase from 'firebase';
+import { Provider } from 'react-redux';
+import store from './Redux/Store';
 
 const config = {
     apiKey: "AIzaSyDlr7lzC7eunsm6NtcTV2bfXLhfM618fz0",
@@ -19,9 +21,11 @@ const config = {
 firebase.initializeApp(config);
 
 ReactDOM.render(
-    <BrowserRouter>
-        <App />
-    </BrowserRouter>
+    <Provider store={store}>
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    </Provider>
     , document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
