@@ -14,6 +14,7 @@ function setUsers(list) {
 export function addSelfToDataBase(name) {
     return dispatch => {
         let id = String(Date.now());
+        console.log(`id: ${id} name: ${name}`)
         // Adds name to db and to reducer
         firebase.database().ref('users/' + id).set({ name })
             .then(() => dispatch(setSelf(name, id)));
@@ -25,11 +26,13 @@ export function getUsers() {
     return dispatch => {
         firebase.database().ref('users').on('value', function (snapshot) {
             let arrUsers = [];
-
-            for (let [id, value] of Object.entries(snapshot.val())) {
-                arrUsers.push({ 'name': value.name, id })
+            //If there are user in db
+            if (snapshot.val() != null) {
+                for (let [id, value] of Object.entries(snapshot.val())) {
+                    arrUsers.push({ 'name': value.name, id })
+                }
             }
-
+            // Adds users to redux
             dispatch(setUsers(arrUsers));
         });
     }
