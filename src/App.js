@@ -19,7 +19,8 @@ function App(props) {
 
 function mapStateToProps(state) {
   return {
-    users: state.users
+    users: state.users,
+    messages: state.messages
   }
 }
 
@@ -27,7 +28,8 @@ function mapDispatchToProps(dispatch) {
   return {
     addSelfToDataBase: name => { dispatch(actions.addSelfToDataBase(name)) },
     getUsers: () => { dispatch(actions.getUsers()) },
-    deleteSelf: id => { dispatch(actions.deleteSelf(id)) }
+    deleteSelf: id => { dispatch(actions.deleteSelf(id)) },
+    sendMessage: (content, timeStamp, user) => { dispatch(actions.addMessageToDataBase(content, timeStamp, user)) }
   }
 }
 

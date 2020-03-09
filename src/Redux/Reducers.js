@@ -3,11 +3,12 @@ import { combineReducers } from 'redux';
 
 //const INITIAL_SELF_STATE = { name: '', id: '' };
 const INITIAL_USERS_STATE = { self: { name: '', id: '' }, users: [] }
+const INITIAL_MESSAGES_STATE = { list: [], database: [] }
 
 function usersReducer(state = INITIAL_USERS_STATE, action) {
     switch (action.type) {
         case actions.SET_SELF:
-            return { ...state, self: { name: action.name, id: action.id } }
+            return { ...state, self: { name: action.name, id: action.id, timestamp: action.timestamp } }
         case actions.SET_USERS:
             return { ...state, users: action.list };
         default:
@@ -15,6 +16,18 @@ function usersReducer(state = INITIAL_USERS_STATE, action) {
     }
 }
 
+function messagesReducer(state = INITIAL_MESSAGES_STATE, action) {
+    switch (action.type) {
+        case actions.ADD_MESSAGES:
+            return { list: [...state.list, action.message] }
+        case actions.DELETE_MESSAGES:
+            return { INITIAL_MESSAGES_STATE }
+        default:
+            return state;
+    }
+}
+
 export default combineReducers({
-    users: usersReducer
+    users: usersReducer,
+    messages: messagesReducer
 });
