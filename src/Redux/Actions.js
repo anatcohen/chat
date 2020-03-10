@@ -5,8 +5,8 @@ export const SET_USERS = 'SET_USERS'
 export const ADD_MESSAGES = 'ADD_MESSAGES';
 export const DELETE_MESSAGES = 'DELETE_MESSAGES';
 
-function setSelf(name = '', id = '', timeStamp = '') {
-    return { type: SET_SELF, name, id, timeStamp }
+function setSelf(name = '', id = '') {
+    return { type: SET_SELF, name, id }
 }
 
 function setUsers(list) {
@@ -25,17 +25,18 @@ function deleteMessages() {
 export function addSelfToDataBase(name) {
     return dispatch => {
         let id = String(Date.now());
+        dispatch(setSelf(name, id))
         // Adds name to db and to reducer
-        firebase.database().ref('users/' + id).set({ name })
-            .then(() => {
-                dispatch(setSelf(name, id))
-            });
+        firebase.database().ref('users/' + id).set({ name });
     }
 }
 
 // Gets list of users from database
 export function getUsers() {
     return dispatch => {
+        // Creates listener for messages
+        dispatch(getAllMessages());
+
         firebase.database().ref('users').on('value', function (snapshot) {
             let arrUsers = [];
             //Checks if there are user in db
@@ -46,8 +47,6 @@ export function getUsers() {
             }
             // Adds users to redux
             dispatch(setUsers(arrUsers));
-            // Creates listener for messages
-            dispatch(getAllMessages());
         });
     }
 }
@@ -56,10 +55,10 @@ export function getUsers() {
 export function deleteSelf(id) {
     return dispatch => {
         // Deletes user
-        firebase.database().ref(`users/${id}`).remove()
-            .then(() => dispatch(setSelf()));
+        firebase.database().ref(`users/${id}`).remove();
         // Deletes messages 
-        dispatch(deleteMessages())
+        firebase.database().ref('chat').off("child_added");
+        // dispatch(deleteMessages());
     }
 }
 

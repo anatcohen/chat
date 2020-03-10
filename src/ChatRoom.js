@@ -15,6 +15,8 @@ export default function ChatRoom(props) {
             document.getElementById('sendBtn').style.visibility = e.currentTarget.value.length ? 'visible' : 'hidden';
         }
 
+
+
     return (
         <>
             <>
