@@ -58,7 +58,7 @@ export function deleteSelf(id) {
         firebase.database().ref(`users/${id}`).remove();
         // Deletes messages 
         firebase.database().ref('chat').off("child_added");
-        // dispatch(deleteMessages());
+        dispatch(deleteMessages());
     }
 }
 

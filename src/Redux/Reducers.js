@@ -21,7 +21,7 @@ function messagesReducer(state = INITIAL_MESSAGES_STATE, action) {
         case actions.ADD_MESSAGES:
             return { list: [...state.list, action.message] }
         case actions.DELETE_MESSAGES:
-            return { INITIAL_MESSAGES_STATE }
+            return INITIAL_MESSAGES_STATE;
         default:
             return state;
     }
