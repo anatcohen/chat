@@ -20,14 +20,14 @@ export default function ChatRoom(props) {
 
     // Deletes user on unmount
     useEffect(() => {
-        // return () => props.deleteSelf(props.users.self.id);
+        return () => props.deleteSelf(props.users.self.id);
     });
 
     return (
         <div id='chatRoom'>
             <header>
-                <p>You {props.users.users.map(value => { return `${value.name}, ` })} are in the chat</p>
-                <Link to='/'><button>Exit</button></Link>
+                <p><span>•</span> You {props.users.users.filter(user => user.name !== props.users.self.name).map(value => { return `,${value.name} ` })}</p>
+                <Link to='/'><button /></Link>
             </header>
             <div id='chat'>
                 {console.log(props.messages)}
@@ -35,9 +35,9 @@ export default function ChatRoom(props) {
                     <Message key={index} message={mes} selfName={props.users.self.name} />
                 )}
             </div>
-            <form onSubmit={onMessageSubmit} autoComplete='off' id='sendMessage'>
-                <input type='textbox' onChange={onMessageChange} placeholder='Enter message' id='messageBox' />
-                <button id='sendBtn' style={{ visibility: 'hidden' }}>Send</button>
+            <form onSubmit={onMessageSubmit} autoComplete='off'>
+                <input type='text' onChange={onMessageChange} placeholder='Enter message' id='messageBox' />
+                <button id='sendBtn' />
             </form>
         </div>
     );

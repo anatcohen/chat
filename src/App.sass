@@ -1,7 +1,14 @@
-@mixin allignPanels
+// Alligns elemnts in center by row/column
+@mixin allignElements($dir, $justCont: center)
     display: flex
-    flex-direction: column
-    justify-content: center
+    flex-direction: $dir
+    justify-content: $justCont
+// Adds image to button
+@mixin btnImage($width: 50px, $height: 25px, $invert: 100)
+    border: none
+    width: $width
+    height: $height
+    filter: invert($invert)
 
 html, body, #root
     height: 100%
@@ -10,7 +17,7 @@ html, body, #root
     color: white
     margin: 0
 
-// Textbox
+// Textbox for login or sending messages
 input[type = text]
     background-color: #574F4F
     border: none
@@ -21,69 +28,86 @@ input[type = text]
 input::placeholder
     color: #B8A7A7
 input[type=text]:focus 
-    outline: 0
+    outline: none
 
 
-//Log-In
 #logIn
     height: 100%
     display: flex
     text-align: center
+    //Left hand side- logo side
     #leftPanel
         background-color: #667FD8
         width: 40%
         border-top-right-radius: 45%
         border-bottom-right-radius: 45%
-        @include allignPanels
-        
+        @include allignElements(column)
+    // Right hand side- Log in side
     #rightPanel
         width: 60%
-        @include allignPanels
+        @include allignElements(column)
         .textbox-logo
-            display: flex
-            flex-direction: row
-            justify-content: center
             align-items: center
+            @include allignElements(row)
         #enterBtn
-            border: none
             background: url(./cssAssests/next.svg) center no-repeat transparent
-            width: 50px
-            height: 25px
-            filter: invert(100)
+            visibility: hidden
+            @include btnImage
+        #entrBtn:focus 
+            outline: none
 
 // ChatRoom
 #chatRoom
     height: 100%  
+    @include allignElements(column, space-between)
+    
     header
-        border: 1px solid
+        background-color: #574F4F
+        align-items: center
+        padding-left: 40px
+        padding-right: 40px
+        @include allignElements(row, space-between)
+        // Exit button
+        button
+            background: url(./cssAssests/turn-off.svg) center no-repeat transparent
+            @include btnImage
+        // Online icon
+        span 
+            color: #2DCA59
+            font-size: 40px
     #chat
         margin-top: 10px
         display: flex
         border: 1px solid
-        height: 60%
+        height: 70%
         padding: 10px
-
         %message
             display: flex
-
         #self-message
             justify-content: flex-end
             @extend %message
         #user-message
             justify-content: flex-start
             @extend %message
-
-    #sendMessage
-        border: 1px solid
-    
+    form
+        height: 10%
+        padding: 10px
+        align-items: center
+        @include allignElements(row)
+        input
+            height: 25px
+            position: absolute
+            width: 80%
+            height: 30px
+        button 
+            background: url(./cssAssests/send.png) center transparent
+            background-size: cover
+            position: absolute
+            margin-left: 36%
+            @include btnImage(45px, 35px, 0)
 
 @font-face 
     font-family: roboto
     src: url(./cssAssests/Roboto-Regular.ttf)
-
-
-@mixin basicSpacing
-    margin-top: 10px
-    padding: 10px
 
 

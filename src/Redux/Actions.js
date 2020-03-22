@@ -69,7 +69,7 @@ export function addMessageToDataBase(content, timeStamp, user) {
     }
 }
 
-// Gets messages from db and adds sends them to theb reducer
+// Gets messages from db and adds sends them to the reducer
 function getAllMessages(user) {
     return (dispatch, getState) => {
         firebase.database().ref('chat').on('child_added', function (data) {

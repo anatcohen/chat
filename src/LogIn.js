@@ -31,7 +31,7 @@ export default function LogIn(props) {
                     <h2>Enter Chat Room:</h2>
                     <div className='textbox-logo'>
                         <input onChange={onTextChange} type='text' id='name' placeholder='Enter nickname' />
-                        <Link to='/ChatRoom'><button id='enterBtn' onClick={onEnterClick} style={{ visibility: 'hidden' }} /></Link>
+                        <Link to='/ChatRoom'><button id='enterBtn' onClick={onEnterClick} /></Link>
                     </div>
                     <p id='nameAlert' style={{ visibility: 'hidden' }}>USERNAME HAS ALREADY BEEN TAKEN</p>
                 </form>
