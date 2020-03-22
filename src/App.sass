@@ -1,0 +1,66 @@
+html, body, #root
+    height: 100%
+    overflow-y: hidden 
+    background-color: black
+    font-family: roboto
+    color: white
+    margin: 0
+
+// Textbox
+input[type = text]
+    background-color: #574F4F
+    border: none
+    border-radius: 15px
+    color: white
+    width: 508px
+    padding: 10px
+input::placeholder
+    color: white
+
+//Log-In
+#logIn
+    height: 100%
+    display: flex
+    text-align: center
+    #leftPanel
+        background-color: #667FD8
+        width: 40%
+    #rightPanel
+        width: 60%
+
+// ChatRoom
+#chatRoom
+    height: 100%  
+    header
+        border: 1px solid
+    #chat
+        margin-top: 10px
+        display: flex
+        border: 1px solid
+        height: 60%
+        padding: 10px
+
+        %message
+            display: flex
+
+        #self-message
+            justify-content: flex-end
+            @extend %message
+        #user-message
+            justify-content: flex-start
+            @extend %message
+
+    #sendMessage
+        border: 1px solid
+    
+
+@font-face 
+    font-family: roboto
+    src: url(./Roboto-Regular.ttf)
+
+
+@mixin basicSpacing
+    margin-top: 10px
+    padding: 10px
+
+

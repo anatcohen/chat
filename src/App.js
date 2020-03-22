@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from './Redux/Actions';
-import './App.css';
+import './App.sass';
 import LogIn from './LogIn';
 import ChatRoom from './ChatRoom';
 

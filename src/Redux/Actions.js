@@ -63,9 +63,9 @@ export function deleteSelf(id) {
 }
 
 // Adds message to db
-export function addMessageToDataBase(content, user) {
+export function addMessageToDataBase(content, timeStamp, user) {
     return dispatch => {
-        firebase.database().ref('chat').push().set({ content, user });
+        firebase.database().ref('chat').push().set({ content, timeStamp, user });
     }
 }
 

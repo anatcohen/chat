@@ -11,20 +11,26 @@ export default function LogIn(props) {
         document.getElementById('nameAlert').style.visibility = !bIsNameUnique ? 'visible' : 'hidden';
     };
 
+
     useEffect(() => {
         props.getUsers();
     }, []);
 
     return (
-        <>
-            <form autoComplete='off'>
-                <p>There are currently {props.users.users.length} users logged on</p>
-                <h1>Enter ChatRoom</h1>
-                <input onChange={onTextChange} type='text' id='name' placeholder='Enter nickname' />
-                <p id='nameAlert' style={{ visibility: 'hidden' }}>Username is already taken</p>
-                <Link to='/ChatRoom'><button id='enter' onClick={() => props.addSelfToDataBase(document.getElementById('name').value)} style={{ visibility: 'hidden' }}>Enter</button></Link>
-            </form>
-        </>
+        <div id='logIn'>
+            <div id='leftPanel'>
+                <h1>Chat Room</h1>
+                <p>{props.users.users.length} USERS LOGGED IN</p>
+            </div>
+            <div id='rightPanel'>
+                <form autoComplete='off'>
+                    <h2>Enter Chat Room:</h2>
+                    <input onChange={onTextChange} type='text' id='name' placeholder='Enter nickname' />
+                    <p id='nameAlert' style={{ visibility: 'hidden' }}>Username is already taken</p>
+                    <Link to='/ChatRoom'><button id='enter' onClick={() => props.addSelfToDataBase(document.getElementById('name').value)} style={{ visibility: 'hidden' }}>Enter</button></Link>
+                </form>
+            </div>
+        </div>
     );
 }
 
