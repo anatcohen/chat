@@ -2,7 +2,7 @@ import * as actions from './Actions';
 import { combineReducers } from 'redux';
 
 //const INITIAL_SELF_STATE = { name: '', id: '' };
-const INITIAL_USERS_STATE = { self: { name: '', id: '' }, users: [] }
+const INITIAL_USERS_STATE = { self: { name: '', id: '' }, users: [], newUsers: '' }
 const INITIAL_MESSAGES_STATE = { list: [] }
 
 function usersReducer(state = INITIAL_USERS_STATE, action) {

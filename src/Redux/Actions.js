@@ -47,6 +47,7 @@ export function getUsers() {
             }
             // Adds users to redux
             dispatch(setUsers(arrUsers));
+            if (arrUsers.length !== 0) dispatch(addMessages({ type: 'newUser', content: arrUsers[arrUsers.length - 1].name }));
         });
     }
 }
@@ -65,7 +66,7 @@ export function deleteSelf(id) {
 // Adds message to db
 export function addMessageToDataBase(content, timeStamp, user) {
     return dispatch => {
-        firebase.database().ref('chat').push().set({ content, timeStamp, user });
+        firebase.database().ref('chat').push().set({ type: 'message', content, timeStamp, user });
     }
 }
 

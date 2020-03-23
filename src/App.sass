@@ -1,4 +1,8 @@
-// Alligns elemnts in center by row/column
+// Custom font
+@font-face 
+    font-family: roboto
+    src: url(./cssAssests/Roboto-Regular.ttf)
+// Alligns elements in center by row/column
 @mixin allignElements($dir, $justCont: center)
     display: flex
     flex-direction: $dir
@@ -8,14 +12,22 @@
     border: none
     width: $width
     height: $height
+    cursor: pointer
     filter: invert($invert)
 
+// Adds animation on button click
+button:active
+    outline: none
+    transform: translateY(4px)
+
+// Global font, font colour and sizing
 html, body, #root
     height: 100%
     background-color: black
     font-family: roboto
     color: white
     margin: 0
+    overflow-y: hidden
 
 // Textbox for login or sending messages
 input[type = text]
@@ -24,13 +36,13 @@ input[type = text]
     border-radius: 15px
     color: white
     width: 508px
-    padding: 10px
+    padding: 13px
 input::placeholder
     color: #B8A7A7
 input[type=text]:focus 
     outline: none
 
-
+// Log-in page
 #logIn
     height: 100%
     display: flex
@@ -53,14 +65,11 @@ input[type=text]:focus
             background: url(./cssAssests/next.svg) center no-repeat transparent
             visibility: hidden
             @include btnImage
-        #entrBtn:focus 
-            outline: none
 
-// ChatRoom
+// Chat Page
 #chatRoom
     height: 100%  
     @include allignElements(column, space-between)
-    
     header
         background-color: #574F4F
         align-items: center
@@ -72,42 +81,55 @@ input[type=text]:focus
             background: url(./cssAssests/turn-off.svg) center no-repeat transparent
             @include btnImage
         // Online icon
-        span 
+        span
             color: #2DCA59
             font-size: 40px
-    #chat
-        margin-top: 10px
-        display: flex
-        border: 1px solid
-        height: 70%
+    // Where messages are shown
+    #chatBody
+        height: 80%
         padding: 10px
+        overflow-y: auto
+        #newUser
+            display: flex
+            justify-content: center
+            
+        // General message box
         %message
             display: flex
-        #self-message
-            justify-content: flex-end
+            flex-direction: column
+            div
+                width: 25%
+                height: 100px
+                padding: 15px
+                border-radius: 15px                    
+        // Messages sent by other users
+        #userMessage
+            align-items: flex-start
             @extend %message
-        #user-message
-            justify-content: flex-start
+            div
+                background-color: #667FD8
+        // Messages sent by user loggen in
+        #selfMessage
+            align-items: flex-end
             @extend %message
-    form
+            div
+                background-color: white
+                color: black
+    // Send message
+    footer
         height: 10%
-        padding: 10px
-        align-items: center
-        @include allignElements(row)
-        input
-            height: 25px
-            position: absolute
-            width: 80%
-            height: 30px
-        button 
-            background: url(./cssAssests/send.png) center transparent
-            background-size: cover
-            position: absolute
-            margin-left: 36%
-            @include btnImage(45px, 35px, 0)
-
-@font-face 
-    font-family: roboto
-    src: url(./cssAssests/Roboto-Regular.ttf)
-
-
+        form
+            height: 
+            allign-self: center
+            padding: 10px
+            @include allignElements(row)
+            input
+                height: 25px
+                position: absolute
+                width: 80%
+            button 
+                background: url(./cssAssests/send.png) center transparent
+                background-size: cover
+                position: absolute
+                margin-left: 37%
+                @include btnImage(40px, 40px, 0)
