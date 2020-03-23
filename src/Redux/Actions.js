@@ -47,7 +47,7 @@ export function getUsers() {
             }
             // Adds users to redux
             dispatch(setUsers(arrUsers));
-            if (arrUsers.length !== 0) dispatch(addMessages({ type: 'newUser', content: arrUsers[arrUsers.length - 1].name }));
+            if (arrUsers.length !== 0) dispatch(addMessages({ type: 'newUser', user: arrUsers[arrUsers.length - 1].name }));
         });
     }
 }

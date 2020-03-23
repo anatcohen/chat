@@ -28,12 +28,13 @@ export default function ChatRoom(props) {
                 <Link to='/' onClick={onExitClick}><button /></Link>
             </header>
             <div id='chatBody'>
-                {props.messages.list.map((mes, index) =>
-                    mes.type === 'message' ?
-                        <Message key={index} message={mes} selfName={props.users.self.name} /> :
-                        <p key={index} id='newUser'>{(mes.content).toUpperCase()} HAS JOINED THE CHAT</p>
-
-                )}
+                {props.messages.list.map((mes, index) => {
+                    console.log(mes.user);
+                    let userName = mes.user === props.users.self.name ? 'YOU' : (mes.user).toUpperCase();
+                    return mes.type === 'message' ?
+                        <Message key={index} message={mes} userName={userName} /> :
+                        <p key={index} id='newUser'>{userName} {userName === 'YOU' ? 'HAVE' : 'HAS'} JOINED THE CHAT</p>
+                })}
             </div>
             <footer>
                 <form onSubmit={onMessageSubmit} autoComplete='off'>
