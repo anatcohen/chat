@@ -2,15 +2,17 @@ import * as actions from './Actions';
 import { combineReducers } from 'redux';
 
 //const INITIAL_SELF_STATE = { name: '', id: '' };
-const INITIAL_USERS_STATE = { self: { name: '', id: '' }, users: [], newUsers: '' }
+const INITIAL_USERS_STATE = { self: { name: '', id: '' }, list: [] }
 const INITIAL_MESSAGES_STATE = { list: [] }
 
 function usersReducer(state = INITIAL_USERS_STATE, action) {
     switch (action.type) {
         case actions.SET_SELF:
             return { ...state, self: { name: action.name, id: action.id } }
-        case actions.SET_USERS:
-            return { ...state, users: action.list };
+        case actions.ADD_USER:
+            return { ...state, list: [...state.list, action.user] };
+        case actions.REMOVE_USER:
+            return { ...state, list: state.list.filter(user => user.name !== action.name) }
         default:
             return state;
     }

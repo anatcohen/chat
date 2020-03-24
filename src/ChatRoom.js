@@ -16,24 +16,20 @@ export default function ChatRoom(props) {
         // Checks if a message has been typed
         onMessageChange = e => {
             document.getElementById('sendBtn').style.visibility = e.currentTarget.value.length ? 'visible' : 'hidden';
-        },
-        onExitClick = () => {
-            props.deleteSelf(props.users.self.id)
-        }
+        };
 
     return (
         <div id='chatRoom'>
             <header>
-                <p><span>•</span> You{props.users.users.filter(user => user.name !== props.users.self.name).map(value => { return `, ${value.name} ` })}</p>
-                <Link to='/' onClick={onExitClick}><button /></Link>
+                <p><span>•</span> You{props.users.list.filter(user => user.name !== props.users.self.name).map(value => { return `, ${value.name} ` })}</p>
+                <Link to='/' onClick={() => props.deleteSelf(props.users.self.id)}><button /></Link>
             </header>
             <div id='chatBody'>
                 {props.messages.list.map((mes, index) => {
-                    console.log(mes.user);
                     let userName = mes.user === props.users.self.name ? 'YOU' : (mes.user).toUpperCase();
                     return mes.type === 'message' ?
                         <Message key={index} message={mes} userName={userName} /> :
-                        <p key={index} id='newUser'>{userName} {userName === 'YOU' ? 'HAVE' : 'HAS'} JOINED THE CHAT</p>
+                        <p key={index} id='newUser'>{`${userName} ${mes.content}`}</p>
                 })}
             </div>
             <footer>

@@ -29,6 +29,7 @@ function mapDispatchToProps(dispatch) {
     addSelfToDataBase: name => { dispatch(actions.addSelfToDataBase(name)) },
     getUsers: () => { dispatch(actions.getUsers()) },
     deleteSelf: id => { dispatch(actions.deleteSelf(id)) },
+    addMessageListener: () => { dispatch(actions.addMessageListener()) },
     sendMessage: (content, timeStamp, user) => { dispatch(actions.addMessageToDataBase(content, timeStamp, user)) }
   }
 }
