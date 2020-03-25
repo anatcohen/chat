@@ -26,9 +26,12 @@ export default function ChatRoom(props) {
             </header>
             <div id='chatBody'>
                 {props.messages.list.map((mes, index) => {
-                    let userName = mes.user === props.users.self.name ? 'YOU' : (mes.user).toUpperCase();
+                    // Checks who sent message and if previous message was sent by same user
+                    let userName = (mes.user === props.users.self.name) ? 'YOU' : mes.user.toUpperCase(),
+                        sameUser = (index > 1) ? (props.messages.list[index - 1].user === mes.user) : false;
+
                     return mes.type === 'message' ?
-                        <Message key={index} message={mes} userName={userName} /> :
+                        <Message key={index} message={mes} userName={userName} sameUser={sameUser} /> :
                         <p key={index} id='newUser'>{`${userName} ${mes.content}`}</p>
                 })}
             </div>
