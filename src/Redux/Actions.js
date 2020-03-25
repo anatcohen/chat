@@ -1,7 +1,7 @@
 import * as firebase from 'firebase';
 
 export const SET_SELF = 'SET_SELF';
-export const ADD_USER = 'ADD_USER';
+export const SET_USERS = 'SET_USERS';
 export const REMOVE_USER = 'REMOVE_USER';
 export const ADD_MESSAGES = 'ADD_MESSAGES';
 export const DELETE_MESSAGES = 'DELETE_MESSAGES';
@@ -10,8 +10,8 @@ function setSelf(name = '', id = '') {
     return { type: SET_SELF, name, id }
 }
 
-function addUser(user) {
-    return { type: ADD_USER, user }
+function setUsers(list) {
+    return { type: SET_USERS, list }
 }
 
 function deleteUser(name) {
@@ -29,7 +29,6 @@ function deleteMessages() {
 // Adds user to db
 export function addSelfToDataBase(name) {
     return dispatch => {
-        console.log('addSelf');
         let id = String(Date.now());
         dispatch(setSelf(name, id))
         // Adds name to db and to reducer
@@ -42,26 +41,44 @@ export function getUsers() {
     return (dispatch, getState) => {
         dispatch(addMessageListener());
 
-        // Listens for added children- Users that have loggen on
-        firebase.database().ref('users').on('child_added', function (data) {
+        console.log('in');
+        firebase.database().ref('users').on('value', function (snapshot) {
+            let arrUsers = [];
+            //Checks if there are user in db
+            if (snapshot.val() != null) {
+                for (let [id, value] of Object.entries(snapshot.val())) {
+                    arrUsers.push({ 'name': value.name, id })
+                }
+            }
+
+            // Creates new user joined message 
+            if (getState().users.self.name !== '') {
+                let lastUser = arrUsers[arrUsers.length - 1].name;
+                // Checks if last user in db list is a new user 
+                if (getState().users.list.findIndex(user => user.name === lastUser) === -1) {
+                    let user = (lastUser === getState().users.self.name) ? 'YOU HAVE' : lastUser + ' HAS';
+                    dispatch(addMessages({ type: 'userJoined', user, content: 'JOINED THE CHAT' }))
+                }
+            }
             // Adds users to redux
-            dispatch(addUser(data.val()));
-            let name = data.val().name === getState().users.self.name ? 'YOU HAVE' : data.val().name + ' HAS';
-            dispatch(addMessages({ type: 'userJoined', user: name, content: 'JOINED THE CHAT' }))
+            dispatch(setUsers(arrUsers));
         });
+
         // Listens for deleted users- users thats have logged off
         firebase.database().ref('users').on('child_removed', function (data) {
-            dispatch(deleteUser(data.val().name));
+            // dispatch(deleteUser(data.val().name));
             dispatch(addMessages({ type: 'userLeft', user: data.val().name, content: 'HAS LEFT THE CHAT' }));
         });
     }
 }
+
 
 // Deletes user from db
 export function deleteSelf(id) {
     return dispatch => {
         // Deletes user
         firebase.database().ref(`users/${id}`).remove();
+        firebase.database().ref('users').off();
         dispatch(setSelf());
         // Deletes messages 
         dispatch(deleteAllMessages());

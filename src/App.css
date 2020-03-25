@@ -1,0 +1,254 @@
+@font-face {
+  font-family: roboto;
+  src: url(./cssAssests/Roboto-Regular.ttf);
+}
+
+button:active {
+  outline: none;
+  -webkit-transform: translateY(4px);
+          transform: translateY(4px);
+}
+
+html, body, #root {
+  height: 100%;
+  background-color: black;
+  font-family: roboto;
+  color: white;
+  margin: 0;
+  overflow-y: hidden;
+}
+
+input[type=text] {
+  background-color: #574F4F;
+  border: none;
+  border-radius: 15px;
+  color: white;
+  width: 508px;
+  padding: 13px;
+}
+
+input::-webkit-input-placeholder {
+  color: #B8A7A7;
+}
+
+input:-ms-input-placeholder {
+  color: #B8A7A7;
+}
+
+input::-ms-input-placeholder {
+  color: #B8A7A7;
+}
+
+input::placeholder {
+  color: #B8A7A7;
+}
+
+input[type=text]:focus {
+  outline: none;
+}
+
+#logIn {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+}
+
+#logIn #leftPanel {
+  background-color: #667FD8;
+  width: 40%;
+  border-top-right-radius: 45%;
+  border-bottom-right-radius: 45%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#logIn #rightPanel {
+  width: 60%;
+  padding: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#logIn #rightPanel .textbox-logo {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#logIn #rightPanel #enterBtn {
+  background: url(./cssAssests/next.svg) center no-repeat transparent;
+  border: none;
+  width: 50px;
+  height: 25px;
+  cursor: pointer;
+  -webkit-filter: invert(100);
+          filter: invert(100);
+}
+
+#chatRoom {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#chatRoom header {
+  background-color: #574F4F;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-left: 40px;
+  padding-right: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#chatRoom header button {
+  background: url(./cssAssests/turn-off.svg) center no-repeat transparent;
+  border: none;
+  width: 50px;
+  height: 25px;
+  cursor: pointer;
+  -webkit-filter: invert(100);
+          filter: invert(100);
+}
+
+#chatRoom header span {
+  color: #2DCA59;
+  font-size: 40px;
+}
+
+#chatRoom #chatBody {
+  height: 80%;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+#chatRoom #chatBody #newUser {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#chatRoom #chatBody #userMessage, #chatRoom #chatBody #selfMessage {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#chatRoom #chatBody #userMessage div, #chatRoom #chatBody #selfMessage div {
+  width: 25%;
+  height: 100px;
+  padding: 15px;
+  border-radius: 15px;
+}
+
+#chatRoom #chatBody #userMessage {
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+#chatRoom #chatBody #userMessage div {
+  background-color: #667FD8;
+}
+
+#chatRoom #chatBody #selfMessage {
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+#chatRoom #chatBody #selfMessage div {
+  background-color: white;
+  color: black;
+}
+
+#chatRoom footer {
+  height: 10%;
+}
+
+#chatRoom footer form {
+  allign-self: center;
+  padding: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#chatRoom footer form input {
+  height: 25px;
+  position: absolute;
+  width: 80%;
+}
+
+#chatRoom footer form button {
+  background: url(./cssAssests/send.png) center transparent;
+  background-size: cover;
+  position: absolute;
+  margin-left: 37%;
+  border: none;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  -webkit-filter: invert(0);
+          filter: invert(0);
+}
+/*# sourceMappingURL=App.css.map */

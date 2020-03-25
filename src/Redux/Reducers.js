@@ -9,8 +9,8 @@ function usersReducer(state = INITIAL_USERS_STATE, action) {
     switch (action.type) {
         case actions.SET_SELF:
             return { ...state, self: { name: action.name, id: action.id } }
-        case actions.ADD_USER:
-            return { ...state, list: [...state.list, action.user] };
+        case actions.SET_USERS:
+            return { ...state, list: action.list };
         case actions.REMOVE_USER:
             return { ...state, list: state.list.filter(user => user.name !== action.name) }
         default:
