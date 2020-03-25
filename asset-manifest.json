@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/ChatRoom/static/css/main.5d264413.chunk.css",
+    "main.js": "/ChatRoom/static/js/main.f74e3a1b.chunk.js",
+    "main.js.map": "/ChatRoom/static/js/main.f74e3a1b.chunk.js.map",
+    "runtime-main.js": "/ChatRoom/static/js/runtime-main.7e75b66a.js",
+    "runtime-main.js.map": "/ChatRoom/static/js/runtime-main.7e75b66a.js.map",
+    "static/js/2.5a546117.chunk.js": "/ChatRoom/static/js/2.5a546117.chunk.js",
+    "static/js/2.5a546117.chunk.js.map": "/ChatRoom/static/js/2.5a546117.chunk.js.map",
+    "index.html": "/ChatRoom/index.html",
+    "precache-manifest.0d288698f45a1d56875134f32a0281a6.js": "/ChatRoom/precache-manifest.0d288698f45a1d56875134f32a0281a6.js",
+    "service-worker.js": "/ChatRoom/service-worker.js",
+    "static/css/main.5d264413.chunk.css.map": "/ChatRoom/static/css/main.5d264413.chunk.css.map",
+    "static/media/App.sass": "/ChatRoom/static/media/turn-off.956cf942.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7e75b66a.js",
+    "static/js/2.5a546117.chunk.js",
+    "static/css/main.5d264413.chunk.css",
+    "static/js/main.f74e3a1b.chunk.js"
+  ]
+}
