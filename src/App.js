@@ -10,8 +10,8 @@ function App(props) {
   return (
     <>
       <Switch>
-        <Route exact path="/" render={(routeProps) => <LogIn {...routeProps} {...props} />} />
-        <Route exact path="/ChatRoom" render={(routeProps) => <ChatRoom {...routeProps} {...props} />} />
+        <Route exact path="/ChatRoom/" render={(routeProps) => <LogIn {...routeProps} {...props} />} />
+        <Route exact path="/room" render={(routeProps) => <ChatRoom {...routeProps} {...props} />} />
       </Switch>
     </>
   );

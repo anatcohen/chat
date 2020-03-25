@@ -2,9 +2,11 @@
   "name": "rotem",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://anatcohen.github.io/ChatRoom",
   "dependencies": {
     "firebase": "^7.7.0",
     "firebaseui": "^4.4.0",
+    "gh-pages": "^2.2.0",
     "node-sass": "^4.13.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -18,6 +20,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "predeploy": "npm run build",
+    "deploy": "gh-pags -d build",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

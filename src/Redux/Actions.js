@@ -39,21 +39,22 @@ export function addSelfToDataBase(name) {
 // Gets list of users from database
 export function getUsers() {
     return (dispatch, getState) => {
+        // Creates message listener
         dispatch(addMessageListener());
-
+        // Creates user listener
         firebase.database().ref('users').on('value', function (snapshot) {
             let arrUsers = [];
-            //Checks if there are user in db
+
             if (snapshot.val() != null) {
                 for (let [id, value] of Object.entries(snapshot.val())) {
                     arrUsers.push({ 'name': value.name, id })
                 }
             }
 
-            // Creates new user joined message 
+            // Creates 'new user joined' message 
             if (getState().users.self.name !== '' && arrUsers.length) {
                 let lastUser = arrUsers[arrUsers.length - 1].name;
-                // Checks if last user in db list is a new user 
+                // Checks if last user in db list is actually a new user 
                 if (getState().users.list.findIndex(user => user.name === lastUser) === -1) {
                     let user = (lastUser === getState().users.self.name) ? 'YOU HAVE' : lastUser + ' HAS';
                     dispatch(addMessages({ type: 'userJoined', user, content: 'JOINED THE CHAT' }))
@@ -63,19 +64,17 @@ export function getUsers() {
             dispatch(setUsers(arrUsers));
         });
 
-        // Listens for deleted users- users thats have logged off
+        // Creates listener for deleted users- users thats have logged off
         firebase.database().ref('users').on('child_removed', function (data) {
-            // dispatch(deleteUser(data.val().name));
             dispatch(addMessages({ type: 'userLeft', user: data.val().name, content: 'HAS LEFT THE CHAT' }));
         });
     }
 }
 
-
 // Deletes user from db
 export function deleteSelf(id) {
     return dispatch => {
-        // Deletes user
+        // Deletes user and removes listeners
         firebase.database().ref(`users/${id}`).remove();
         firebase.database().ref('users').off();
         dispatch(setSelf());
@@ -101,10 +100,10 @@ export function addMessageListener(user) {
     }
 }
 
-// Deletes all message thread from just local storage or from db too
+// Deletes message thread from just local storage or from db too
 function deleteAllMessages() {
     return (dispatch, getState) => {
-        // Deletes messages from local storage
+        // Deletes messages from local storageand removes listener
         dispatch(deleteMessages());
         firebase.database().ref('chat').off();
         // Deletes messages from database
