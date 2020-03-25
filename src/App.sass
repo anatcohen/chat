@@ -35,12 +35,12 @@ input[type = text]
     border: none
     border-radius: 15px
     color: white
-    width: 508px
+    width: 80%
     padding: 13px
-input::placeholder
-    color: #B8A7A7
-input[type=text]:focus 
-    outline: none
+    &::placeholder
+        color: #B8A7A7
+    &:focus 
+        outline: none
 
 // Log-in page
 #logIn
@@ -51,8 +51,9 @@ input[type=text]:focus
     #leftPanel
         background-color: #667FD8
         width: 40%
-        border-top-right-radius: 45%
+        border-top-right-radius: 100%
         border-bottom-right-radius: 45%
+        
         @include allignElements(column)
     // Right hand side- Log in side
     #rightPanel
@@ -101,6 +102,7 @@ input[type=text]:focus
             div
                 width: 25%
                 height: 100px
+                min-height: 75px
                 padding: 15px
                 border-radius: 15px                    
         // Messages sent by other users
@@ -134,3 +136,26 @@ input[type=text]:focus
                 position: absolute
                 margin-left: 37%
                 @include btnImage(40px, 40px, 0)
+// Mobile
+@media (max-width: 500px)
+    #logIn
+        flex-direction: column
+        %spacing
+            padding: 0px
+            width: 100%
+            height: 50%
+        #leftPanel
+            border-top-right-radius: 0%
+            border-bottom-left-radius: 100%
+            @extend %spacing
+        #rightPanel 
+            @extend %spacing
+        
+    #chatRoom
+        #chatBody 
+            %message
+                div
+                    height: 60px
+                    min-width: 50%
+        #messageBox
+            height: 15px

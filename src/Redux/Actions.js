@@ -41,7 +41,6 @@ export function getUsers() {
     return (dispatch, getState) => {
         dispatch(addMessageListener());
 
-        console.log('in');
         firebase.database().ref('users').on('value', function (snapshot) {
             let arrUsers = [];
             //Checks if there are user in db
@@ -52,7 +51,7 @@ export function getUsers() {
             }
 
             // Creates new user joined message 
-            if (getState().users.self.name !== '') {
+            if (getState().users.self.name !== '' && arrUsers.length) {
                 let lastUser = arrUsers[arrUsers.length - 1].name;
                 // Checks if last user in db list is a new user 
                 if (getState().users.list.findIndex(user => user.name === lastUser) === -1) {
