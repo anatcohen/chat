@@ -2,7 +2,7 @@
   "name": "rotem",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://anatcohen.github.io/ChatRoom",
+  "homepage": "https://anatcohen.github.io/ChatRoom/",
   "dependencies": {
     "firebase": "^7.7.0",
     "firebaseui": "^4.4.0",
