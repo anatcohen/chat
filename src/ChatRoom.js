@@ -24,7 +24,7 @@ export default function ChatRoom(props) {
         <div id='chatRoom'>
             <header>
                 <p><span>•</span> You{props.users.list.filter(user => user.name !== props.users.self.name).map(value => { return `, ${value.name} ` })}</p>
-                <Link to='/ChatRoom/' onClick={() => props.deleteSelf(props.users.self.id)}><button /></Link>
+                <Link to='/chatroom/' onClick={() => props.deleteSelf(props.users.self.id)}><button /></Link>
             </header>
             <div id='chatBody'>
                 {props.messages.list.map((mes, index) => {
