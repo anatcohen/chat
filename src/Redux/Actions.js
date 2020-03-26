@@ -70,16 +70,8 @@ export function getUsers() {
         // Creates listener for deleted users- users thats have logged off
         firebase.database().ref('users').on('child_removed', function (data) {
             // Disconnection
-            if (data.val().name === getState().users.self.name) {
+            if (data.val().name === getState().users.self.name)
                 dispatch(addMessages({ type: 'userLeft', user: '', content: 'YOU HAVE DISCONNECTED FROM THE CHAT' }));
-                // Directs web back to log in page
-                setTimeout(() => {
-                    firebase.database().ref('users').off();
-                    dispatch(deleteAllMessages());
-                    // window.location.href = 'http://localhost:3000/ChatRoom/';
-                    window.location.href = 'https://anatcohen.github.io/chatroom/';
-                }, 2500);
-            }
             // Different user logged off
             else
                 dispatch(addMessages({ type: 'userLeft', user: data.val().name, content: 'HAS LEFT THE CHAT' }));
