@@ -76,8 +76,8 @@ export function getUsers() {
                 setTimeout(() => {
                     firebase.database().ref('users').off();
                     dispatch(deleteAllMessages());
-                    window.location.href = 'http://localhost:3000/ChatRoom/';
-                    //window.location.href = 'https://anatcohen.github.io/ChatRoom/';
+                    // window.location.href = 'http://localhost:3000/ChatRoom/';
+                    window.location.href = 'https://anatcohen.github.io/ChatRoom/';
                 }, 2500);
             }
             // Different user logged off

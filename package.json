@@ -1,8 +1,8 @@
 {
-  "name": "ChatRoom",
+  "name": "chatroom",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://anatcohen.github.io/ChatRoom/",
+  "homepage": "http://anatcohen.github.io/chatroom",
   "dependencies": {
     "firebase": "^7.7.0",
     "firebaseui": "^4.4.0",
