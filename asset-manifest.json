@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/chatroom/static/css/main.4d65132f.chunk.css",
-    "main.js": "/chatroom/static/js/main.b434a02f.chunk.js",
-    "main.js.map": "/chatroom/static/js/main.b434a02f.chunk.js.map",
+    "main.js": "/chatroom/static/js/main.c38bef42.chunk.js",
+    "main.js.map": "/chatroom/static/js/main.c38bef42.chunk.js.map",
     "runtime-main.js": "/chatroom/static/js/runtime-main.8dda04ad.js",
     "runtime-main.js.map": "/chatroom/static/js/runtime-main.8dda04ad.js.map",
     "static/js/2.d2130321.chunk.js": "/chatroom/static/js/2.d2130321.chunk.js",
     "static/js/2.d2130321.chunk.js.map": "/chatroom/static/js/2.d2130321.chunk.js.map",
     "index.html": "/chatroom/index.html",
-    "precache-manifest.9b38810b6c7ff59ef2274ef1aa47ad5f.js": "/chatroom/precache-manifest.9b38810b6c7ff59ef2274ef1aa47ad5f.js",
+    "precache-manifest.3a24107b2c13fb78cf02da1e31db3e81.js": "/chatroom/precache-manifest.3a24107b2c13fb78cf02da1e31db3e81.js",
     "service-worker.js": "/chatroom/service-worker.js",
     "static/css/main.4d65132f.chunk.css.map": "/chatroom/static/css/main.4d65132f.chunk.css.map",
     "static/media/App.sass": "/chatroom/static/media/turn-off.956cf942.svg"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.8dda04ad.js",
     "static/js/2.d2130321.chunk.js",
     "static/css/main.4d65132f.chunk.css",
-    "static/js/main.b434a02f.chunk.js"
+    "static/js/main.c38bef42.chunk.js"
   ]
 }
