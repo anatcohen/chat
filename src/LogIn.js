@@ -15,6 +15,7 @@ export default function LogIn(props) {
         };
 
     useEffect(() => {
+        document.getElementById('name').focus();
         props.getUsers();
     }, []);
 

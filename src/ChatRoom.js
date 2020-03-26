@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Message from './Message';
 
@@ -17,6 +17,8 @@ export default function ChatRoom(props) {
         onMessageChange = e => {
             document.getElementById('sendBtn').style.visibility = e.currentTarget.value.length ? 'visible' : 'hidden';
         };
+
+    useEffect(() => document.getElementById('messageBox').focus())
 
     return (
         <div id='chatRoom'>

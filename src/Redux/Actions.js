@@ -32,7 +32,10 @@ export function addSelfToDataBase(name) {
         let id = String(Date.now());
         dispatch(setSelf(name, id))
         // Adds name to db and to reducer
-        firebase.database().ref('users/' + id).set({ name }, () => dispatch(setSelf(name, id)));
+        firebase.database().ref(`users/${id}`).set({ name }, () => dispatch(setSelf(name, id)));
+        // When connection to db disconnects
+        firebase.database().ref(`users/${id}`).onDisconnect().remove();
+
     }
 }
 
@@ -66,7 +69,20 @@ export function getUsers() {
 
         // Creates listener for deleted users- users thats have logged off
         firebase.database().ref('users').on('child_removed', function (data) {
-            dispatch(addMessages({ type: 'userLeft', user: data.val().name, content: 'HAS LEFT THE CHAT' }));
+            // Disconnection
+            if (data.val().name === getState().users.self.name) {
+                dispatch(addMessages({ type: 'userLeft', user: '', content: 'YOU HAVE DISCONNECTED FROM THE CHAT' }));
+                // Directs web back to log in page
+                setTimeout(() => {
+                    firebase.database().ref('users').off();
+                    dispatch(deleteAllMessages());
+                    window.location.href = 'http://localhost:3000/ChatRoom/';
+                    //window.location.href = 'https://anatcohen.github.io/ChatRoom/';
+                }, 2500);
+            }
+            // Different user logged off
+            else
+                dispatch(addMessages({ type: 'userLeft', user: data.val().name, content: 'HAS LEFT THE CHAT' }));
         });
     }
 }
